@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to EduPlatform</title>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DynaPuff:wght@400..700&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
+
+
+    <style>
+        /* Reset some default styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Background and font styles */
+        body {
+            font-family: "DynaPuff", system-ui;
+            color: #333;
+           
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+            flex-wrap: nowrap;
+            
+            height: 100vh;
+            overflow: hidden;
+            background-image: url('images/wal.jpg');
+            background-size: 100% 100%;
+        }
+
+        
+
+        
+
+        
+
+         /* Header Styles */
+         header {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: rgba(255, 18, 18, 0.618);
+            position: relative;
+            color: white;
+            text-align: center;
+            font-size: 1.3em;
+            width: 100%;
+            height: 8vh;
+            margin-bottom: 20px;
+        }
+         /* Footer Styles */
+         footer {
+            background: rgba(255, 18, 18, 0.618);
+            padding: 10px 20px;
+            color: white;
+            text-align: center;
+            font-size: 1em;
+            width: -webkit-fill-available;
+            position: absolute;
+            bottom: 0px;
+        }
+
+       
+
+        header ul li {
+            display: inline-block;
+            list-style: none;
+            margin: 0 20px;
+
+        }
+
+        header ul li:last-child{
+            margin-right: 0;
+        }
+
+
+        header ul li a {
+            color: white;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 1em;
+            transition: color 0.2s;
+        }
+
+        nav ul li a:hover {
+            color: #000000; /* Dark color on hover */
+        }
+
+         /* Dropdown Menu Styling */
+
+        header ul .submenu{
+            position: absolute;
+            color: #b67f2e;
+            width: 140px;
+            background-color: #fff700;
+            box-shadow: 0 2px 4px rgb(120, 120, 120) ;
+            margin-top: -50px;
+            opacity: 0;
+            z-index: -999;
+            transition: all ease 0.1s;
+            border-radius: 10px;
+            
+        }
+
+        header ul li:hover .submenu{
+            z-index: 99;
+            opacity: 1;
+            margin-top: 0;
+        }
+
+        header ul .submenu li{
+            margin: 0;
+            width: 100%;
+        }
+         
+        header ul .submenu li a{
+            padding: 15px 20px;
+            display: inline-block;
+            width: 100%;
+            color: #2b2b2b;
+
+        }
+
+        header ul .submenu li a:hover{
+            color: #c800ff;
+        }
+
+        /* Container for Product Boxes */
+        .product-container {
+            position: absolute;
+            top: 140px;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            max-width: 900px;
+        }
+
+        /* Individual Product Box Styling */
+        .product-box {
+            background-color: #fff;
+            padding: 10px;
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s, box-shadow 0.3s;
+            text-align: center;
+            
+        }
+
+        .product-box a{
+
+            text-decoration: none;
+
+        }
+
+
+
+        .product-box:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+            
+            
+        }
+
+        /* Product Image */
+        .product-box img {
+            width: 100%;
+            border-radius: 12px;
+            max-height: 140px;
+            object-fit: cover;
+        }
+
+        /* Product Title */
+        .product-box h3 {
+            margin: 15px 0 10px;
+            font-size: 18px;
+            color: #28226a;
+            
+        }
+
+        /* Product Description */
+        .product-box p {
+            font-size: 14px;
+            color: #666;
+        }
+
+        /* Product Price */
+        .product-price {
+            font-size: 16px;
+            color: #28a745;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .product-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .product-container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+    </style>
+</head>
+
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href=#>Start learning by choosing a course below !</a></li>
+                <li><a href="#">Contact</a>
+                    <ul class="submenu">
+                        <li><a href="#">Suhani</a></li>
+                        <li><a href="#">Kamini</a></li>
+                        <li><a href="#">Shreya</a></li>
+                        <li><a href="#">Gaurav</a></li>
+                    </ul>
+                </li>
+                
+            </ul>
+        </nav>
+        
+    </header>
+    <div class="product-container">
+        <!-- Product 1 -->
+        <div class="product-box"><a href="courses/web-development.html"><img src="images/1.png" alt="Product 1">
+            <h3>Web Development</h3></a>
+            
+            
+        </div>
+    
+        <!-- Product 2 -->
+        <div class="product-box"><a href="courses/app-development.html"><img src="images/5.png" alt="Product 2">
+            <h3>App Development</h3></a>
+            
+            
+        </div>
+    
+        <!-- Product 3 -->
+        <div class="product-box"><a href="courses/dsa-java.html"><img src="images/4.png" alt="Product 3">
+            <h3>DSA in JAVA</h3></a>
+            
+            
+        </div>
+    
+        <!-- Product 4 -->
+        <div class="product-box"><a href="courses/dsa-c++.html"><img src="images/3.png" alt="Product 4">
+            <h3>DSA in C++</h3></a>
+            
+            
+        </div>
+    
+        <!-- Product 5 -->
+        <div class="product-box"><a href="courses/dsa-python.html"><img src="images/2.png" alt="Product 5">
+            <h3>DSA in Python</h3></a>
+            
+            
+        </div>
+    
+        <!-- Product 6 -->
+        <div class="product-box"><a href="courses/ai-ml.html"><img src="images/6.png" alt="Product 6">
+            <h3>AI and ML</h3></a>
+            
+            
+        </div>
+    </div>
+    <footer>
+        &copy; 2024 Learnify. All rights reserved.
+    </footer>
+    
+</body>
+
+</html>

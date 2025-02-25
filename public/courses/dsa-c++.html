@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Educational Video Player</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=DynaPuff:wght@400..700&family=Mulish:ital,wght@0,200..1000;1,200..1000&family=Rubik:ital,wght@0,300..900;1,300..900&family=Sour+Gummy:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" />
+
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: "Mulish", sans-serif;
+            background-image: url("images/wal.jpg");
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+        }
+        header, footer {
+            width: 100%;
+            max-width: 900px;
+            padding: 15px;
+            background-color: hsl(278, 100%, 53%);
+            color: #fff;
+            text-align: center;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+
+        header button{
+            background: none;
+            border-radius: 4px;
+            color: #ffffff;
+        }
+
+        footer {
+            margin-top: 20px;
+            font-size: 0.9em;
+        }
+        .container {
+            display: flex;
+            width: 100%;
+            max-width: 900px;
+            background-color: #fff;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .video-section {
+            flex: 3;
+            display: flex;
+            flex-direction: column;
+            padding: 10px;
+            color: #00a6ff;
+        }
+
+        .video-player {
+            position: relative;
+            width: 100%;
+            background-color: #000;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        video {
+            width: 100%;
+            display: block;
+            border-radius: 8px 8px 0 0;
+        }
+
+        .controls {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            padding: 10px;
+            background-color: hsl(278, 100%, 53%);
+
+        }
+
+        .controls input {
+            color: #000000;
+        }
+
+        .controls button,
+        .controls input {
+            font-size: 14px;
+            padding: 5px;
+            border: none;
+            background-color: #d9cece00;
+            color: #fff;
+            cursor: pointer;
+            border-radius: 1px;
+        }
+
+        .controls button:hover,
+        .controls input:hover {
+            background-color: #ffffff00;
+        }
+
+        .description {
+            margin-top: 10px;
+            text-align: left;
+        }
+
+        .description h2 {
+            margin-bottom: 5px;
+        }
+
+        /* Right column for video list */
+        .video-list-section {
+            flex: 1;
+            max-width: 250px;
+            padding: 10px;
+            overflow-y: auto;
+            border-left: 1px solid #ccc;
+            background-color: #fefefe;
+        }
+
+        .video-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .video-item {
+            cursor: pointer;
+            font-size: 14px;
+            padding: 8px;
+            border-radius: 4px;
+            color: #007bff;
+            transition: background 0.3s;
+            text-align: left;
+        }
+
+        .video-item:hover,
+        .video-item.active {
+            background-color: #e7f3ff;
+            color: #0056b3;
+        }
+
+        /* Notes area styling */
+        .notes-area {
+            display: none;
+            margin-top: 10px;
+        }
+
+        .notes-area textarea {
+            width: 100%;
+            height: 100px;
+            padding: 10px;
+            font-size: 14px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            resize: none;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Section -->
+    <header>
+        <h1>DSA in C++</h1>
+        <p>Enhance Your Knowledge with Our Video Resources</p><br>
+        <span>Download Notes & Ask doubts here..<button onclick="openHTMLFile('notes.html')"><i class="fa fa-link" aria-hidden="true"></i></i></button></span>
+    </header>
+
+    <!-- Video Player Container -->
+    <div class="container">
+        <!-- Video Player Section -->
+        <div class="video-section">
+            <div class="video-player">
+                <video id="mainVideo" controls></video>
+                <div class="controls">
+
+                    <button id="notesBtn"><i class="fa fa-sticky-note" aria-hidden="true"></i></button>
+                    <button id="fullscreenBtn"><i class="fa fa-arrows-alt" aria-hidden="true"></i></button>
+
+                </div>
+            </div>
+            <!-- Video Description -->
+            <div class="description">
+                <h2>Video Description</h2>
+                <p id="videoDescription">Select a video to view its details.</p>
+            </div>
+            <!-- Notes Section -->
+            <div class="notes-area" id="notesArea">
+                <textarea id="notesText" placeholder="Write your notes here..."></textarea>
+            </div>
+        </div>
+
+        <!-- Video List Section (Right Column) -->
+        <div class="video-list-section">
+            <h2>Video List</h2>
+            <div class="video-list" id="videoList"></div>
+        </div>
+    </div>
+
+    <!-- Footer Section -->
+    
+
+    <script>
+
+        const videoList = document.getElementById("videoList");
+        const mainVideo = document.getElementById("mainVideo");
+        const volumeSlider = document.getElementById("volumeSlider");
+        const fullscreenBtn = document.getElementById("fullscreenBtn");
+        const videoDescription = document.getElementById("videoDescription");
+        
+        const notesBtn = document.getElementById("notesBtn");
+        const notesArea = document.getElementById("notesArea");
+        const notesText = document.getElementById("notesText");
+
+        // List of video URLs (replace these URLs with actual server file paths)
+        const videos = [
+            { title: "DSA in C++ : Part 1", url: "videos/c1/c1-1.mp4" }, 
+            { title: "DSA in C++ : Part 2", url: "videos/c1/c1-1.mp4" }, 
+            { title: "DSA in C++ : Part 3", url: "videos/c1/c1-1.mp4" }, 
+            { title: "DSA in C++ : Part 4", url: "videos/c1/c1-1.mp4" }, 
+            { title: "DSA in C++ : Part 5", url: "videos/c1/c1-1.mp4" }, 
+            { title: "DSA in C++ : Part 6", url: "videos/c1/c1-1.mp4" }, 
+            { title: "DSA in C++ : Part 7", url: "videos/c1/c1-1.mp4" }, 
+            { title: "DSA in C++ : Part 8", url: "videos/c1/c1-1.mp4" }, 
+            { title: "DSA in C++ : Part 9", url: "videos/c1/c1-1.mp4" }, 
+            { title: "DSA in C++ : Part 10", url: "videos/c1/c1-1.mp4" }, 
+            { title: "DSA in C++ : Part 11", url: "videos/c1/c1-1.mp4" }, 
+            { title: "DSA in C++ : Part 12", url: "videos/c1/c1-1.mp4" }, 
+            { title: "DSA in C++ : Part 13", url: "videos/c1/c1-1.mp4" }, 
+            { title: "DSA in C++ : Part 14", url: "videos/c1/c1-1.mp4" },
+            { title: "DSA in C++ : Part 15", url: "videos/c1/c1-1.mp4" },
+            { title: "DSA in C++ : Part 16", url: "videos/c1/c1-1.mp4" },
+
+        ];
+
+        function displayVideoList() {
+            videoList.innerHTML = "";
+            videos.forEach((video, index) => {
+                const videoItem = document.createElement("div");
+                videoItem.classList.add("video-item");
+                videoItem.textContent = video.title;
+                videoItem.addEventListener("click", () => playVideo(video.url, video.title, videoItem));
+                videoList.appendChild(videoItem);
+            });
+        }
+
+        function playVideo(url, title, videoItem) {
+            mainVideo.src = url;
+            mainVideo.play();
+            videoDescription.textContent = `Playing: ${title}`;
+            const items = document.querySelectorAll(".video-item");
+            items.forEach(item => item.classList.remove("active"));
+            videoItem.classList.add("active");
+            notesText.value = "";  // Clear notes when a new video is selected
+            notesArea.style.display = "none"; // Hide notes area by default
+        }
+
+        notesBtn.addEventListener("click", () => {
+            notesArea.style.display = notesArea.style.display === "none" ? "block" : "none";
+        });
+
+        // /?
+
+        fullscreenBtn.addEventListener("click", () => {
+            if (mainVideo.requestFullscreen) {
+                mainVideo.requestFullscreen();
+            } else if (mainVideo.webkitRequestFullscreen) {
+                mainVideo.webkitRequestFullscreen();
+            } else if (mainVideo.msRequestFullscreen) {
+                mainVideo.msRequestFullscreen();
+            }
+        });
+
+        // Load video list on page load
+        displayVideoList();
+
+
+        // JavaScript function to open an HTML file
+        function openHTMLFile(filePath) {
+            // Open the specified HTML file in the same tab
+            window.location.href = filePath;
+
+            // Alternatively, open in a new tab by using:
+            // window.open(filePath, '_blank');
+        }
+    </script>
+</body>
+
+</html>

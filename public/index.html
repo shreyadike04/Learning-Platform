@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to EduPlatform</title>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DynaPuff:wght@400..700&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
+
+
+    <style>
+        /* Reset some default styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Background and font styles */
+        body {
+            font-family: "DynaPuff", system-ui;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            align-items: center; 
+            height: 100vh;
+            overflow: hidden;
+            background-image: url('images/rr.png');
+            background-size: 100% 100%;
+        }
+
+        /* Main container styling */
+        .container {
+            text-align: center;
+            color: white;
+            position: absolute;
+            top: 180px;
+            max-width: 700px;
+            padding: 40px 30px;
+            border-radius: 12px;
+            background: rgba(255, 18, 18, 0.618);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            animation: fadeIn 1s ease-in-out;
+            
+        }
+
+        /* Title styling */
+        h1 {
+            font-size: 2.8rem;
+            margin-bottom: 15px;
+            font-weight: 600;
+            color: #fff700;
+        }
+
+        /* Subtitle styling */
+        p {
+            font-size: 1.2rem;
+            line-height: 1.6;
+            margin-bottom: 30px;
+            color: #f1f1f1;
+            font-weight: 300;
+        }
+
+        /* Button container styling */
+        .button-container {
+            
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        /* Button styles */
+        .button {
+            padding: 15px 40px;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            font-weight: 600;
+            transition: 0.3s ease;
+            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        .register-btn {
+            background-color: #ffd60a;
+            color: #000;
+            font-family: "DynaPuff", system-ui;
+        }
+
+        .register-btn:hover {
+            background-color: #ffca2c;
+            transform: scale(1.05);
+        }
+
+        .login-btn {
+            background-color: transparent;
+            color: #ffd60a;
+            border: 2px solid #ffd60a;
+            font-family: "DynaPuff", system-ui;
+        }
+
+        .login-btn:hover {
+            background-color: #ffd60a;
+            color: #000;
+            transform: scale(1.05);
+        }
+
+        /* Keyframes for Fade-in Animation */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+         /* Header Styles */
+         header {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: rgba(255, 18, 18, 0.618);
+            position: relative;
+            color: white;
+            text-align: center;
+            font-size: 1.3em;
+            width: 100%;
+            height: 8vh;
+            margin-bottom: 20px;
+        }
+         /* Footer Styles */
+         footer {
+            background: rgba(255, 18, 18, 0.618);
+            padding: 10px 20px;
+            color: white;
+            text-align: center;
+            font-size: 1em;
+            width: -webkit-fill-available;
+            position: absolute;
+            bottom: 0px;
+        }
+
+       
+
+        header ul li {
+            display: inline-block;
+            list-style: none;
+            margin: 0 20px;
+
+        }
+
+        header ul li:last-child{
+            margin-right: 0;
+        }
+
+
+        header ul li a {
+            color: white;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 1em;
+            transition: color 0.2s;
+        }
+
+        nav ul li a:hover {
+            color: #000000; /* Dark color on hover */
+        }
+
+         /* Dropdown Menu Styling */
+
+        header ul .submenu{
+            position: absolute;
+            color: #b67f2e;
+            width: 140px;
+            background-color: #fff700;
+            box-shadow: 0 2px 4px rgb(120, 120, 120) ;
+            margin-top: -50px;
+            opacity: 0;
+            z-index: -999;
+            transition: all ease 0.1s;
+            border-radius: 10px;
+            
+        }
+
+        header ul li:hover .submenu{
+            z-index: 99;
+            opacity: 1;
+            margin-top: 0;
+        }
+
+        header ul .submenu li{
+            margin: 0;
+            width: 100%;
+        }
+         
+        header ul .submenu li a{
+            padding: 15px 20px;
+            display: inline-block;
+            width: 100%;
+            color: #2b2b2b;
+
+        }
+
+        header ul .submenu li a:hover{
+            color: #c800ff;
+        }
+
+
+
+    </style>
+</head>
+
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="login.html">Web Devlopment</a></li>
+                <li><a href="login.html">App Devlopment</a></li>
+                <li><a href="login.html">DSA in Java/C++/Python</a></li>
+                <li><a href="login.html">AI and ML</a></li>
+                <li><a href="#">Contact</a>
+                    <ul class="submenu">
+                        <li><a href="#">Suhani</a></li>
+                        <li><a href="#">Kamini</a></li>
+                        <li><a href="#">Shreya</a></li>
+                        <li><a href="#">Gaurav</a></li>
+                    </ul>
+                </li>
+                
+            </ul>
+        </nav>
+        
+    </header>
+    <div class="container">
+        <!-- Page Header -->
+        <h1>Welcome to Learnify</h1>
+        
+        <!-- Page Subtitle -->
+        <p>Explore a world of learning with expert-led courses and vibrant community engagement. Join us to achieve your goals and expand your skills.</p>
+        
+        <!-- Button Section -->
+        <div class="button-container">
+            <button class="button register-btn" onclick="location.href='register.html'">Register</button>
+            <button class="button login-btn" onclick="location.href='login.html'">Login</button>
+        </div>
+    </div>
+    <footer>
+        &copy; 2024 Learnify. All rights reserved.
+    </footer>
+    
+</body>
+
+</html>
